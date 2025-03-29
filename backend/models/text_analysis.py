@@ -6,19 +6,17 @@ from concurrent.futures import ProcessPoolExecutor
 # Load pre-trained text classification model
 nlp_model = pipeline("text-classification", model="cardiffnlp/twitter-roberta-base")
 
-def analyze_text(message):
-    """Analyze a single message and return the classification result."""
-    result = nlp_model(message)[0]
 
-    # Convert raw model labels to name categories
-    label_mapping = {
-        "HRM": "Harmful", 
-        "SAF": "Safe", 
-        "NEA": "Needs Attention",
-        "LABEL_0": "Safe",
-        "LABEL_1": "Needs Attention",
-        "LABEL_2": "Harmful"
-    }
+
+# Convert raw model labels to name categories
+label_mapping = {
+    "HRM": "Harmful", 
+    "SAF": "Safe", 
+    "NEA": "Needs Attention",
+    "LABEL_0": "Safe",
+    "LABEL_1": "Needs Attention",
+    "LABEL_2": "Harmful"
+}
 
 """ Classifies each message as either Harmful, Needs Attention, or Safe """
 def classify_message(messages):
@@ -53,7 +51,7 @@ def message_analysis(input):
     # Convert the results to a DataFrame for easy inspection and save to a CSV file
     df = pd.DataFrame(classed_data)
     output_csv_file = "classed_messages.csv"
-    df.to_csv("cyberbullying_analysis_results.csv", index=False)
+    df.to_csv(output_csv_file, index=False)
 
 
 message_analysis("scraped_messages.json")
