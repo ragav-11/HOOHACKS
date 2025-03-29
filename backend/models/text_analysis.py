@@ -1,3 +1,4 @@
+import json
 from transformers import pipeline
 import pandas as pd
 from concurrent.futures import ProcessPoolExecutor
@@ -8,27 +9,51 @@ nlp_model = pipeline("text-classification", model="cardiffnlp/twitter-roberta-ba
 def analyze_text(message):
     """Analyze a single message and return the classification result."""
     result = nlp_model(message)[0]
-    return {"message": message, "label": result["label"], "score": result["score"]}
 
-def analyze_batch(messages):
-    """Analyze a batch of messages in parallel."""
+    # Convert raw model labels to name categories
+    label_mapping = {
+        "HRM": "Harmful", 
+        "SAF": "Safe", 
+        "NEA": "Needs Attention",
+        "LABEL_0": "Safe",
+        "LABEL_1": "Needs Attention",
+        "LABEL_2": "Harmful"
+    }
+
+""" Classifies each message as either Harmful, Needs Attention, or Safe """
+def classify_message(messages):
+    text = messages["content"]
+    # Runs the NLP classification
+    result = nlp_model(text)[0]
+
+    # Gets the classification label, which defaults to Needs Attention if unknown
+    # Gets the confidence score for each cla
+    harm_level = label_mapping.get(result["label"], "Needs Attention") 
+    conf_score = result["score"]
+
+    # Update the data for each message
+    messages["classification"] = harm_level
+    messages["confidence_score"] = conf_score
+    return messages
+
+"""Takes in the inputted json file and analyzes each message"""
+def message_analysis(input):
+
+    with open(input, "r") as file:
+        total_data = json.load(file)
+
     with ProcessPoolExecutor() as executor:
-        results = list(executor.map(analyze_text, messages))
-    return results
+        classed_data = list(executor.map(classify_message, total_data))
 
-# Example usage with a list of messages
-messages = [
-    "You're stupid!",
-    "Great job, well done!",
-    "You should leave this place!",
-    "That's awesome, keep it up!"
-]
+    # Save updated data to a new JSON file
+    output = "analyzed_messages.json"
+    with open(output, "w") as file:
+        json.dump(classed_data, file)
 
-# Analyze the messages in batches
-results = analyze_batch(messages)
+    # Convert the results to a DataFrame for easy inspection and save to a CSV file
+    df = pd.DataFrame(classed_data)
+    output_csv_file = "classed_messages.csv"
+    df.to_csv("cyberbullying_analysis_results.csv", index=False)
 
-# Convert the results to a DataFrame for easy inspection and save to a CSV file
-df = pd.DataFrame(results)
-df.to_csv("cyberbullying_analysis_results.csv", index=False)
 
-print(df)
+message_analysis("scraped_messages.json")
