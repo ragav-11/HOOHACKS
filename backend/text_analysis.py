@@ -50,7 +50,7 @@ def message_analysis(input):
         return #exits function of file error occurs
     
     # Process each message and classify it
-    classed_data = [classify_message(msg for msg in total_data)]
+    classed_data = [classify_message(msg) for msg in total_data]
 
     # Save updated data to a new JSON file
     output = "analyzed_messages.json"
