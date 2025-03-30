@@ -1,20 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Dashboard from "./pages/Dashboard";
+// src/App.js
+import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import SignUpPage from './pages/SignUpPage';
+import HomePage from './pages/HomePage';
+import ParentLoginPage from './pages/ParentLoginPage';
+import ParentDashboard from './pages/ParentDashboard';
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
-        <Header />
-        <main className="p-4">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-          </Routes>
-        </main>
-      </div>
+      <Routes>
+        <Route path="/" element={<SignUpPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/parent-login" element={<ParentLoginPage />} />
+        <Route path="/parent-dashboard" element={<ParentDashboard />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
