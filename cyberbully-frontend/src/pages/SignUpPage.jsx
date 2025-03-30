@@ -1,6 +1,8 @@
 // src/pages/SignUpPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signUp } from '../services/auth';
 
 const SignUpPage = () => {

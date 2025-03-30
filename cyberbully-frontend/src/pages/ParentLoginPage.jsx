@@ -1,8 +1,8 @@
 // src/pages/ParentLoginPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from './firebaseConfig'; // import your Firebase auth instanc
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase'; // import your Firebase auth instanc
 
 const ParentLoginPage = () => {
   const [email, setEmail] = useState('');
@@ -70,7 +70,7 @@ const ParentLoginPage = () => {
 
           <button
             type="button"
-            // onClick={handleLogin}  // Trigger login on click
+            onClick={handleLogin}  // Trigger login on click
             className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition duration-200"
           >
             Login
