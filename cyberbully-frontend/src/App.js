@@ -1,24 +1,29 @@
-// src/App.js
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import SignUpPage from './pages/SignUpPage';
-import HomePage from './pages/HomePage';
-import ParentLoginPage from './pages/ParentLoginPage';
-import ParentDashboard from './pages/ParentDashboard';
-import ResetPassword from './pages/ResetPassword';  // Make sure ResetPassword is imported
+import MainPopupView from './pages/MainPopupView';
 
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SignUpPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/parent-login" element={<ParentLoginPage />} />
-        <Route path="/parent-dashboard" element={<ParentDashboard />} />
-        <Route path="/reset-password" element={<ResetPassword />} /> {/* Ensure reset password route is here */}
-      </Routes>
-    </Router>
+function App() {
+  const [hasSignedUp, setHasSignedUp] = useState(null); // null = loading
+
+  useEffect(() => {
+    const signedUp = localStorage.getItem('hasSignedUp') === 'true';
+    setHasSignedUp(signedUp);
+  }, []);
+
+  if (hasSignedUp === null) {
+    // Prevent flickering on load
+    return <div className="p-4 text-center">Loading...</div>;
+  }
+
+  return hasSignedUp ? (
+    <div className="h-[500px] w-[400px]">
+      <MainPopupView />
+    </div>
+  ) : (
+    <div className="h-[500px] w-[400px]">
+      <SignUpPage onSignUpComplete={() => setHasSignedUp(true)} />
+    </div>
   );
-};
+}
 
 export default App;

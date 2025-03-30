@@ -1,11 +1,9 @@
-// src/pages/SignUpPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';  // Use the correct path to firebase.js
+import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import bulldog from '../assets/bulldog.png';
 
-const SignUpPage = () => {
-  const navigate = useNavigate();
+const SignUpPage = ({ onSignUpComplete }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -13,10 +11,10 @@ const SignUpPage = () => {
 
   useEffect(() => {
     const isSignedUp = localStorage.getItem('hasSignedUp');
-    if (isSignedUp) {
-      navigate('/home');
+    if (isSignedUp === 'true') {
+      onSignUpComplete(); // Auto-transition if already signed up
     }
-  }, [navigate]);
+  }, [onSignUpComplete]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,11 +26,10 @@ const SignUpPage = () => {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Optionally, send an email verification:
       await sendEmailVerification(userCredential.user);
       console.log("User created:", userCredential.user);
       localStorage.setItem('hasSignedUp', 'true');
-      navigate('/home');
+      onSignUpComplete();
     } catch (error) {
       console.error("Error signing up:", error);
       setErrorMessage(error.message || 'Error signing up, please try again!');
@@ -41,46 +38,54 @@ const SignUpPage = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-indigo-600">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-700">Create Your Account</h2>
+      <div className="w-full max-w-md p-6 bg-white rounded-xl shadow-xl space-y-6">
+      <h2 className="text-3xl font-bold text-center text-gray-800 flex items-center justify-center gap-3">
+        <img src={bulldog} alt="Bulldog logo" className="w-10 h-10" />
+        Create Your Account
+      </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="mb-4">
+          <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="you@example.com"
               required
             />
           </div>
 
-          <div className="mb-4">
+          <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="••••••••"
               required
             />
           </div>
 
-          <div className="mb-4">
+          <div>
             <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">Confirm Password</label>
             <input
               type="password"
               id="confirm-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="••••••••"
               required
             />
           </div>
 
-          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-red-500 text-sm text-center">{errorMessage}</p>
+          )}
 
           <button
             type="submit"
