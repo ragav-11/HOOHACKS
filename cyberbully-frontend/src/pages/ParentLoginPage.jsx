@@ -1,6 +1,8 @@
 // src/pages/ParentLoginPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from './firebaseConfig'; // import your Firebase auth instanc
 
 const ParentLoginPage = () => {
   const [email, setEmail] = useState('');
@@ -8,17 +10,30 @@ const ParentLoginPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    const savedEmail = localStorage.getItem('userEmail');
-    const savedPassword = localStorage.getItem('userPassword');
+  const handleLogin = async () => {
+  //   const savedEmail = localStorage.getItem('userEmail');
+  //   const savedPassword = localStorage.getItem('userPassword');
 
-    // Check if the entered credentials match the stored credentials
-    if (email === savedEmail && password === savedPassword) {
-      setErrorMessage('');
+  //   // Check if the entered credentials match the stored credentials
+  //   if (email === savedEmail && password === savedPassword) {
+  //     setErrorMessage('');
+  //     alert('Logged in successfully');
+  //     navigate('/parent-dashboard');  // Navigate to the Parent Dashboard after successful login
+  //   } else {
+  //     setErrorMessage('Invalid credentials');
+  //   }
+  // };
+    setErrorMessage('');
+    try {
+      // Use Firebase Authentication to sign in the user
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // If successful, you can access userCredential.user for further processing
+      console.log("Logged in user:", userCredential.user);
       alert('Logged in successfully');
       navigate('/parent-dashboard');  // Navigate to the Parent Dashboard after successful login
-    } else {
-      setErrorMessage('Invalid credentials');
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setErrorMessage('Invalid credentials or error logging in. Please try again.');
     }
   };
 
@@ -55,7 +70,7 @@ const ParentLoginPage = () => {
 
           <button
             type="button"
-            onClick={handleLogin}  // Trigger login on click
+            // onClick={handleLogin}  // Trigger login on click
             className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition duration-200"
           >
             Login

@@ -1,0 +1,136 @@
+[debug] [2025-03-30T04:50:58.474Z] ----------------------------------------------------------------------
+[debug] [2025-03-30T04:50:58.476Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mihee\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-03-30T04:50:58.477Z] CLI Version:   14.0.1
+[debug] [2025-03-30T04:50:58.477Z] Platform:      win32
+[debug] [2025-03-30T04:50:58.477Z] Node Version:  v23.10.0
+[debug] [2025-03-30T04:50:58.477Z] Time:          Sun Mar 30 2025 00:50:58 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-03-30T04:50:58.477Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-30T04:50:58.482Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-30T04:50:58.482Z] > authorizing via signed-in user (miheerdhar@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\mihee\eclipse-workspace\HOOHACKS\cyberbully-frontend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-03-30T04:51:26.582Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:26.582Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:26.583Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-03-30T04:51:26.897Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-03-30T04:51:26.898Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project digitalwatchdog-1c2d9 (DigitalWatchDog) 
+[info] 
+=== Firestore Setup
+[debug] [2025-03-30T04:51:27.888Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:27.888Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:27.888Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/firestore.googleapis.com [none]
+[debug] [2025-03-30T04:51:27.888Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/firestore.googleapis.com x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:51:28.181Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/firestore.googleapis.com 200
+[debug] [2025-03-30T04:51:28.181Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/firestore.googleapis.com [omitted]
+[debug] [2025-03-30T04:51:28.182Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:28.182Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:28.182Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default) [none]
+[debug] [2025-03-30T04:51:28.456Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default) 200
+[debug] [2025-03-30T04:51:28.456Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default) {"name":"projects/digitalwatchdog-1c2d9/databases/(default)","uid":"b9ca0394-a8c0-4f0a-8326-e269397244f3","createTime":"2025-03-30T04:48:50.473532Z","updateTime":"2025-03-30T04:48:50.473532Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-03-30T04:48:50.473532Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"etag":"INj8zfSAsYwDMLzUvaiAsYwD"}
+[debug] [2025-03-30T04:51:28.456Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-03-30T04:51:28.456Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-03-30T04:51:28.456Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-30T04:51:28.457Z] > authorizing via signed-in user (miheerdhar@gmail.com)
+[debug] [2025-03-30T04:51:28.457Z] [iam] checking project digitalwatchdog-1c2d9 for permissions ["firebase.projects.get"]
+[debug] [2025-03-30T04:51:28.457Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:28.457Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:51:28.457Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions [none]
+[debug] [2025-03-30T04:51:28.457Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:51:28.457Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-03-30T04:51:28.547Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions 200
+[debug] [2025-03-30T04:51:28.547Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-03-30T04:52:51.131Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:51.131Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:51.131Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/releases pageSize=10&pageToken=
+[debug] [2025-03-30T04:52:51.314Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/releases 200
+[debug] [2025-03-30T04:52:51.314Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/releases {"releases":[{"name":"projects/digitalwatchdog-1c2d9/releases/cloud.firestore","rulesetName":"projects/digitalwatchdog-1c2d9/rulesets/05630968-8133-41eb-a272-604e03450d52","createTime":"2025-03-30T04:48:54.776477Z","updateTime":"2025-03-30T04:48:54.776477Z"}]}
+[debug] [2025-03-30T04:52:51.314Z] Found ruleset: projects/digitalwatchdog-1c2d9/rulesets/05630968-8133-41eb-a272-604e03450d52
+[debug] [2025-03-30T04:52:51.314Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:51.314Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:51.314Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/rulesets/05630968-8133-41eb-a272-604e03450d52 [none]
+[debug] [2025-03-30T04:52:51.418Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/rulesets/05630968-8133-41eb-a272-604e03450d52 200
+[debug] [2025-03-30T04:52:51.418Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/digitalwatchdog-1c2d9/rulesets/05630968-8133-41eb-a272-604e03450d52 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-03-30T04:52:55.335Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:55.335Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:55.335Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:55.335Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:55.335Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-03-30T04:52:55.337Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-03-30T04:52:55.622Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-03-30T04:52:55.622Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2025-03-30T04:52:56.222Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-03-30T04:52:56.222Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/digitalwatchdog-1c2d9/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Functions Setup
+[debug] [2025-03-30T04:52:56.224Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-30T04:52:56.224Z] > authorizing via signed-in user (miheerdhar@gmail.com)
+[debug] [2025-03-30T04:52:56.224Z] [iam] checking project digitalwatchdog-1c2d9 for permissions ["firebase.projects.get"]
+[debug] [2025-03-30T04:52:56.224Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.224Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.225Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions [none]
+[debug] [2025-03-30T04:52:56.225Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:52:56.225Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-03-30T04:52:56.305Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions 200
+[debug] [2025-03-30T04:52:56.305Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/digitalwatchdog-1c2d9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-03-30T04:52:56.306Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.306Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.306Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.306Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.306Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-03-30T04:52:56.306Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:52:56.308Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-03-30T04:52:56.308Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:52:56.596Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/runtimeconfig.googleapis.com 200
+[debug] [2025-03-30T04:52:56.596Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-03-30T04:52:56.599Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com 200
+[debug] [2025-03-30T04:52:56.599Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-03-30T04:52:56.600Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.600Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:52:56.600Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2025-03-30T04:52:56.600Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com:enable x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:52:57.347Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com:enable 200
+[debug] [2025-03-30T04:52:57.347Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com:enable [omitted]
+[debug] [2025-03-30T04:53:07.350Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:53:07.350Z] Checked if tokens are valid: true, expires at: 1743313117220
+[debug] [2025-03-30T04:53:07.351Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-03-30T04:53:07.351Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/digitalwatchdog-1c2d9
+[debug] [2025-03-30T04:53:07.813Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com 200
+[debug] [2025-03-30T04:53:07.813Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/digitalwatchdog-1c2d9/services/cloudfunctions.googleapis.com [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
