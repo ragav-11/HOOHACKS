@@ -1,59 +1,67 @@
-import json
 import smtplib
+import json
 import os
-from email.mime.text import MIMEText
-from firebase import FirebaseAuth  # Assumes you have this class implemented
-from dotenv import load_dotenv
 
-# Load environment variables (email, password)
-load_dotenv()
-
-SENDER_EMAIL = os.getenv("SENDER_EMAIL")
-SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
-
-class AlertSystem:
-    def __init__(self, analyzed_messages_file="analyzed_messages.json", user_file="analyzed_messages.json"):
-        self.analyzed_messages_file = analyzed_messages_file
-        self.firebase_auth = FirebaseAuth(user_file)
-        self.users = self.firebase_auth.get_registered_users()
-
-def send_alerts(analyzed_messages_path="analyzed_messages.json"):
-    from firebase import FirebaseAuth
-    import smtplib
-    from email.mime.text import MIMEText
-
-    auth = FirebaseAuth()
-    users = auth.get_registered_users()
-
-    with open(analyzed_messages_path, "r") as f:
-        messages = json.load(f)
-
-    flagged = [m for m in messages if m["classification"] in ["Harmful", "Needs Attention"]]
-
-    if not flagged:
+# Load user data
+def load_users():
+    user_file = "analyzed_messages.json"
+    if not os.path.exists(user_file):
+        print("❌ Failed to load local user file: registered_users.json not found.")
         return []
+    
+    with open(user_file, "r") as f:
+        try:
+            users = json.load(f)
+            print(f"✅ Successfully loaded {len(users)} registered users.")
+            return users
+        except json.JSONDecodeError:
+            print("❌ Error: Failed to parse JSON in registered_users.json.")
+            return []
 
-    for user in users:
-        body = "\n".join(
-            f"- {m['message']} ({m['classification']}, {m['confidence_score']:.2f})"
-            for m in flagged
-        )
-        msg = MIMEText(body)
-        msg["Subject"] = "🚨 Cyberbullying Alert"
-        msg["From"] = "noreply@yourapp.com"
-        msg["To"] = user
+# Function to send email alerts
+def send_alerts(flagged_messages):
+    if not flagged_messages:
+        print("✅ No flagged messages to process.")
+        return
+    
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    sender_email = "your_email@gmail.com"  # Replace with your email
+    sender_password = "your_app_password"  # Replace with an app password (not your actual password)
+    
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(sender_email, sender_password)
+    except smtplib.SMTPAuthenticationError:
+        print("❌ SMTP Authentication Error: Check your email credentials and security settings.")
+        return
+    except Exception as e:
+        print(f"❌ Error: Could not connect to SMTP server: {e}")
+        return
+
+    print(f"🚨 {len(flagged_messages)} flagged messages found. Notifying users...")
+
+    for message in flagged_messages:
+        to_email = "recipient@example.com"  # Replace with actual recipient logic
+        subject = "🚨 Digital Watchdog Alert: Flagged Message Detected"
+        body = f"User: {message['username']}\nMessage: {message['message']}\nPlatform: {message['platform']}\nConfidence Score: {message['confidence_score']}"
+        email_text = f"Subject: {subject}\n\n{body}"
 
         try:
-            with smtplib.SMTP("smtp.gmail.com", 587) as server:
-                server.starttls()
-                server.login("your_email@gmail.com", "your_app_password")
-                server.send_message(msg)
-        except Exception as e:
-            print(f"Failed to send email to {user}: {e}")
+            server.sendmail(sender_email, to_email, email_text)
+            print(f"✅ Email successfully sent to {to_email} for message: {message['message']}")
+        except smtplib.SMTPException as e:
+            print(f"❌ Failed to send email to {to_email}: {e}")
 
-    return flagged
+    server.quit()
 
-# Run example
-if __name__ == "__main__":
-    alert_system = AlertSystem()
-    alert_system.notify_users()
+# Example flagged messages for testing
+flagged_messages = [
+    {"username": "unknown", "message": "You're so worthless, no one likes you.", "platform": "MockPlatform", "confidence_score": 0.9783},
+    {"username": "unknown", "message": "Just go disappear already.", "platform": "MockPlatform", "confidence_score": 0.5973},
+]
+
+# Execute
+users = load_users()
+send_alerts(flagged_messages)
