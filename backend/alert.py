@@ -9,25 +9,7 @@ class AlertSystem:
         self.firebase_auth = FirebaseAuth(user_file)  # Load registered users
         self.users = self.firebase_auth.get_registered_users  # Get the list of emails
 
-    """Load analyzed messages from JSON file."""
-    def load_analyzed_messages(self):
-        try:
-            with open(self.analyzed_messages_file, "r") as file:
-                messages = json.load(file)
-
-            # ensures the data is only structured as a list, no other form
-            if not isinstance(messages, list):
-                raise ValueError("Expected a list of messages in the JSON file")
-            return messages
-        # Error handling for any wrong input
-        except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
-            print(f"Error loading analyzed messages: {e}")
-            return []
-
     """Filter messages that are classified as Harmful or Needs Attention."""
-    def filter_flagged_messages(self, messages):
-        return [msg for msg in messages if msg["classification"] in ["Harmful", "Needs Attention"]]
-
     def send_alert(self, recipient_email, flagged_messages):
         """Simulated alert sending via email (replace with actual email sending)."""
         if not flagged_messages:
@@ -55,19 +37,11 @@ class AlertSystem:
         except Exception as e:
             print(f"Failed to send email to {recipient_email}: {e}")
 
-    def notify_users(self):
+    def notify_users(self, flagged_messages):
         """Send alerts to all registered users if flagged messages are detected."""
-        messages = self.load_analyzed_messages()
-        flagged_messages = self.filter_flagged_messages(messages)
-
         if not flagged_messages:
             print("No harmful messages detected. No alerts needed.")
             return
 
         for user_email in self.users:
             self.send_alert(user_email, flagged_messages)
-
-# Run alert system
-if __name__ == "__main__":
-    alert_system = AlertSystem()
-    alert_system.notify_users()
