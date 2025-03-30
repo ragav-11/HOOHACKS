@@ -41,15 +41,15 @@ class AlertSystem:
         # Format email
         email_msg = MIMEText(body)
         email_msg["Subject"] = subject
-        email_msg["From"] = "your_email@example.com"  # Replace with your sender email
+        email_msg["From"] = "ragav@vt.edu"  # Replace with your sender email
         email_msg["To"] = recipient_email
 
         # Simulated sending (replace with real SMTP configuration)
         try:
-            with smtplib.SMTP("smtp.example.com", 587) as server:  # Replace with actual SMTP server
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:  
                 server.starttls()
-                server.login("your_email@example.com", "your_password")  # Replace with your credentials
-                server.sendmail("your_email@example.com", recipient_email, email_msg.as_string())
+                server.login("ragavmj23@gmail.com", "RagavRajan123")  
+                server.sendmail("ragavmj23@gmail.com", recipient_email, email_msg.as_string())
 
             print(f"Alert sent to {recipient_email}")
         except Exception as e:
