@@ -2,14 +2,15 @@ import json
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
 # Setup Chrome WebDriver
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode
-service = Service(r"C:\Users\ragav\Downloads\chromedriver_win32\chromedriver.exe")  # Update with your actual path
-driver = webdriver.Chrome(service=service, options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
 
 # JSON File Path
 json_file_path = "scraped_messages.json"
@@ -37,8 +38,8 @@ def save_messages(messages):
 
 # **1. Scraper for Instagram Messages**
 def scrape_instagram():
-    driver.get("https://www.instagram.com/direct/t/7510656628961048/")
-    time.sleep(5)
+    driver.get("https://www.instagram.com/direct/inbox/")
+    time.sleep(10)
 
     messages = []
     message_elements = driver.find_elements(By.CSS_SELECTOR, "._aacl")  # Update this selector if needed
