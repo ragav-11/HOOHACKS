@@ -1,47 +1,59 @@
 import json
 import smtplib
+import os
 from email.mime.text import MIMEText
-from firebase import FirebaseAuth
+from firebase import FirebaseAuth  # Assumes you have this class implemented
+from dotenv import load_dotenv
+
+# Load environment variables (email, password)
+load_dotenv()
+
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 
 class AlertSystem:
-    def __init__(self, analyzed_messages_file="analyzed_messages.json", user_file="registered_users.json"):
+    def __init__(self, analyzed_messages_file="analyzed_messages.json", user_file="analyzed_messages.json"):
         self.analyzed_messages_file = analyzed_messages_file
-        self.firebase_auth = FirebaseAuth(user_file)  # Load registered users
-        self.users = self.firebase_auth.get_registered_users  # Get the list of emails
+        self.firebase_auth = FirebaseAuth(user_file)
+        self.users = self.firebase_auth.get_registered_users()
 
-    """Filter messages that are classified as Harmful or Needs Attention."""
-    def send_alert(self, recipient_email, flagged_messages):
-        """Simulated alert sending via email (replace with actual email sending)."""
-        if not flagged_messages:
-            return
+def send_alerts(analyzed_messages_path="analyzed_messages.json"):
+    from firebase import FirebaseAuth
+    import smtplib
+    from email.mime.text import MIMEText
 
-        subject = "Alert: Potential Harmful Messages Detected"
-        body = "The following messages have been flagged:\n\n"
-        for msg in flagged_messages:
-            body += f"- {msg['message']} (Classification: {msg['classification']}, Confidence: {msg['confidence_score']:.2f})\n"
+    auth = FirebaseAuth()
+    users = auth.get_registered_users()
 
-        # Format email
-        email_msg = MIMEText(body)
-        email_msg["Subject"] = subject
-        email_msg["From"] = "ragav@vt.edu"  # Replace with your sender email
-        email_msg["To"] = recipient_email
+    with open(analyzed_messages_path, "r") as f:
+        messages = json.load(f)
 
-        # Simulated sending (replace with real SMTP configuration)
+    flagged = [m for m in messages if m["classification"] in ["Harmful", "Needs Attention"]]
+
+    if not flagged:
+        return []
+
+    for user in users:
+        body = "\n".join(
+            f"- {m['message']} ({m['classification']}, {m['confidence_score']:.2f})"
+            for m in flagged
+        )
+        msg = MIMEText(body)
+        msg["Subject"] = "🚨 Cyberbullying Alert"
+        msg["From"] = "noreply@yourapp.com"
+        msg["To"] = user
+
         try:
-            with smtplib.SMTP("smtp.gmail.com", 587) as server:  
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
-                server.login("ragavmj23@gmail.com", "RagavRajan123")  
-                server.sendmail("ragavmj23@gmail.com", recipient_email, email_msg.as_string())
-
-            print(f"Alert sent to {recipient_email}")
+                server.login("your_email@gmail.com", "your_app_password")
+                server.send_message(msg)
         except Exception as e:
-            print(f"Failed to send email to {recipient_email}: {e}")
+            print(f"Failed to send email to {user}: {e}")
 
-    def notify_users(self, flagged_messages):
-        """Send alerts to all registered users if flagged messages are detected."""
-        if not flagged_messages:
-            print("No harmful messages detected. No alerts needed.")
-            return
+    return flagged
 
-        for user_email in self.users:
-            self.send_alert(user_email, flagged_messages)
+# Run example
+if __name__ == "__main__":
+    alert_system = AlertSystem()
+    alert_system.notify_users()

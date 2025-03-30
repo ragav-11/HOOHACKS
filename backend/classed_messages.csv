@@ -1,0 +1,21 @@
+user_id,username,platform,timestamp,message_type,message,classification,confidence_score
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,"You're so worthless, no one likes you.",Needs Attention,0.9783106446266174
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Just go disappear already.,Needs Attention,0.5973552465438843
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Why are you even here? You're a waste of space.,Needs Attention,0.9700418710708618
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,You should really just stop trying. You're a failure.,Needs Attention,0.9681540131568909
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,I hate everything about you.,Needs Attention,0.9749899506568909
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,I can't sleep at all these days.,Needs Attention,0.9283303022384644
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Things feel like they’re falling apart.,Needs Attention,0.8664636611938477
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Sometimes I feel like nobody understands me.,Needs Attention,0.9234751462936401
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,"I'm not okay, but I don't know how to talk about it.",Needs Attention,0.908199667930603
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,School is getting overwhelming and I feel so alone.,Needs Attention,0.9579882621765137
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Let's hang out this weekend!,Needs Attention,0.8168538808822632
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,That was such a fun movie night!,Needs Attention,0.9858296513557434
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,You did amazing in the game today!,Needs Attention,0.9876896142959595
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,I'm so proud of you for how far you've come.,Needs Attention,0.9896624088287354
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Hope you’re having a great day!,Needs Attention,0.9840471148490906
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Thanks for helping me with the homework.,Needs Attention,0.9191831350326538
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Let’s grab lunch after class tomorrow!,Needs Attention,0.6572858691215515
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,"Good luck on your exam, you’ve got this!",Needs Attention,0.9725763201713562
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Can’t wait to see you at the event!,Needs Attention,0.987754762172699
+unknown,unknown,MockPlatform,2025-03-30T09:41:54,text,Happy birthday! Wishing you the best year ahead!,Needs Attention,0.9928576946258545

@@ -5,7 +5,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "You're so worthless, no one likes you."
+        "message": "You're so worthless, no one likes you.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9783106446266174
     },
     {
         "user_id": "unknown",
@@ -13,7 +15,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Just go disappear already."
+        "message": "Just go disappear already.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.5973552465438843
     },
     {
         "user_id": "unknown",
@@ -21,7 +25,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Why are you even here? You're a waste of space."
+        "message": "Why are you even here? You're a waste of space.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9700418710708618
     },
     {
         "user_id": "unknown",
@@ -29,7 +35,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "You should really just stop trying. You're a failure."
+        "message": "You should really just stop trying. You're a failure.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9681540131568909
     },
     {
         "user_id": "unknown",
@@ -37,7 +45,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "I hate everything about you."
+        "message": "I hate everything about you.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9749899506568909
     },
     {
         "user_id": "unknown",
@@ -45,7 +55,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "I can't sleep at all these days."
+        "message": "I can't sleep at all these days.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9283303022384644
     },
     {
         "user_id": "unknown",
@@ -53,7 +65,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Things feel like they\u2019re falling apart."
+        "message": "Things feel like they\u2019re falling apart.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.8664636611938477
     },
     {
         "user_id": "unknown",
@@ -61,7 +75,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Sometimes I feel like nobody understands me."
+        "message": "Sometimes I feel like nobody understands me.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9234751462936401
     },
     {
         "user_id": "unknown",
@@ -69,7 +85,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "I'm not okay, but I don't know how to talk about it."
+        "message": "I'm not okay, but I don't know how to talk about it.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.908199667930603
     },
     {
         "user_id": "unknown",
@@ -77,7 +95,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "School is getting overwhelming and I feel so alone."
+        "message": "School is getting overwhelming and I feel so alone.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9579882621765137
     },
     {
         "user_id": "unknown",
@@ -85,7 +105,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Let's hang out this weekend!"
+        "message": "Let's hang out this weekend!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.8168538808822632
     },
     {
         "user_id": "unknown",
@@ -93,7 +115,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "That was such a fun movie night!"
+        "message": "That was such a fun movie night!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9858296513557434
     },
     {
         "user_id": "unknown",
@@ -101,7 +125,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "You did amazing in the game today!"
+        "message": "You did amazing in the game today!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9876896142959595
     },
     {
         "user_id": "unknown",
@@ -109,7 +135,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "I'm so proud of you for how far you've come."
+        "message": "I'm so proud of you for how far you've come.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9896624088287354
     },
     {
         "user_id": "unknown",
@@ -117,7 +145,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Hope you\u2019re having a great day!"
+        "message": "Hope you\u2019re having a great day!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9840471148490906
     },
     {
         "user_id": "unknown",
@@ -125,7 +155,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Thanks for helping me with the homework."
+        "message": "Thanks for helping me with the homework.",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9191831350326538
     },
     {
         "user_id": "unknown",
@@ -133,7 +165,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Let\u2019s grab lunch after class tomorrow!"
+        "message": "Let\u2019s grab lunch after class tomorrow!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.6572858691215515
     },
     {
         "user_id": "unknown",
@@ -141,7 +175,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Good luck on your exam, you\u2019ve got this!"
+        "message": "Good luck on your exam, you\u2019ve got this!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9725763201713562
     },
     {
         "user_id": "unknown",
@@ -149,7 +185,9 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Can\u2019t wait to see you at the event!"
+        "message": "Can\u2019t wait to see you at the event!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.987754762172699
     },
     {
         "user_id": "unknown",
@@ -157,6 +195,8 @@
         "platform": "MockPlatform",
         "timestamp": "2025-03-30T09:41:54",
         "message_type": "text",
-        "message": "Happy birthday! Wishing you the best year ahead!"
+        "message": "Happy birthday! Wishing you the best year ahead!",
+        "classification": "Needs Attention",
+        "confidence_score": 0.9928576946258545
     }
 ]
