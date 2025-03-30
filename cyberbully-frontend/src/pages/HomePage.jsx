@@ -29,20 +29,24 @@ const HomePage = () => {
           </ul>
         </div>
 
-        <button
-          onClick={handleReportBullying}
-          className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition duration-200"
-        >
-          Report Cyberbullying
-        </button>
+        {/* Show this button only if not in Parent Control */}
+        {!isParentControl && (
+          <button
+            onClick={handleReportBullying}
+            className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition duration-200"
+          >
+            Report Cyberbullying
+          </button>
+        )}
 
         <button
-          onClick={toggleParentControl}
+          onClick={() => navigate('/parent-login')}  // Navigate to the parent login page
           className="w-full mt-4 bg-yellow-500 text-white py-3 rounded-md hover:bg-yellow-600 transition duration-200"
         >
-          {isParentControl ? 'Back to Home' : 'Go to Parental Control'}
+          Go to Parental Control
         </button>
 
+        {/* If toggled to Parental Control */}
         {isParentControl && (
           <div className="mt-4">
             <button
