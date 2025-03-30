@@ -1,9 +1,8 @@
 // src/pages/SignUpPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { signUp } from '../services/auth';
+import { auth } from '../firebase';  // Use the correct path to firebase.js
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -28,11 +27,15 @@ const SignUpPage = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Optionally, send an email verification:
+      await sendEmailVerification(userCredential.user);
+      console.log("User created:", userCredential.user);
       localStorage.setItem('hasSignedUp', 'true');
       navigate('/home');
     } catch (error) {
-      setErrorMessage('Error signing up, please try again!');
+      console.error("Error signing up:", error);
+      setErrorMessage(error.message || 'Error signing up, please try again!');
     }
   };
 
