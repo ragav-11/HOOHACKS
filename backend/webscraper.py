@@ -41,12 +41,16 @@ def scrape_instagram():
     driver.get("https://www.instagram.com/direct/inbox/")
     time.sleep(10)
 
+    for i in range(10):
+        message_elements = driver.find_elements(By.XPATH, '//div[@role="presentation"]//div[contains(@class, "x1lliihq")]')
+        if len(message_elements) > 0:
+            break
+        time.sleep(1)
     messages = []
-    message_elements = driver.find_elements(By.CSS_SELECTOR, "._aacl")  # Update this selector if needed
-
+    seen_texts = set()  # To avoid duplicates
     for element in message_elements:
         message_text = element.text.strip()
-        if message_text:
+        if message_text and message_text not in seen_texts:
             messages.append({
                 "user_id": "unknown",
                 "username": "unknown",
@@ -55,6 +59,7 @@ def scrape_instagram():
                 "message_type": "text",
                 "message": message_text
             })
+            seen_texts.add(message_text)
 
     save_messages(messages)
 
