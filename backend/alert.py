@@ -1,67 +1,77 @@
 import smtplib
 import json
 import os
+from email.mime.text import MIMEText
 
-# Load user data
-def load_users():
-    user_file = "analyzed_messages.json"
-    if not os.path.exists(user_file):
-        print("❌ Failed to load local user file: registered_users.json not found.")
-        return []
-    
-    with open(user_file, "r") as f:
+class AlertSystem:
+    def __init__(self, analyzed_messages_file="analyzed_messages.json", user_file="registered_users.json"):
+        self.analyzed_messages_file = analyzed_messages_file
+        self.user_file = user_file
+        self.users = self.load_users()
+        print(f"✅ Successfully loaded {len(self.users)} registered users.")
+
+    def load_users(self):
+        """Load registered users from a JSON file."""
+        if not os.path.exists(self.user_file):
+            print(f"❌ Error: User file {self.user_file} not found.")
+            return []
         try:
-            users = json.load(f)
-            print(f"✅ Successfully loaded {len(users)} registered users.")
+            with open(self.user_file, "r") as f:
+                users = json.load(f)
             return users
         except json.JSONDecodeError:
-            print("❌ Error: Failed to parse JSON in registered_users.json.")
+            print("❌ Error: Failed to parse JSON in the user file.")
             return []
 
-# Function to send email alerts
-def send_alerts(flagged_messages):
-    if not flagged_messages:
-        print("✅ No flagged messages to process.")
-        return
-    
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587
-    sender_email = "your_email@gmail.com"  # Replace with your email
-    sender_password = "your_app_password"  # Replace with an app password (not your actual password)
-    
-    try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(sender_email, sender_password)
-    except smtplib.SMTPAuthenticationError:
-        print("❌ SMTP Authentication Error: Check your email credentials and security settings.")
-        return
-    except Exception as e:
-        print(f"❌ Error: Could not connect to SMTP server: {e}")
-        return
+    def send_email(self, to_email, subject, body):
+        """Send an email notification using Gmail's SMTP."""
+        smtp_server = "smtp.gmail.com"
+        smtp_port = 587
+        sender_email = "your_email@gmail.com"       # Replace with your Gmail address
+        sender_password = "your_app_password"         # Replace with your generated App Password
 
-    print(f"🚨 {len(flagged_messages)} flagged messages found. Notifying users...")
-
-    for message in flagged_messages:
-        to_email = "recipient@example.com"  # Replace with actual recipient logic
-        subject = "🚨 Digital Watchdog Alert: Flagged Message Detected"
-        body = f"User: {message['username']}\nMessage: {message['message']}\nPlatform: {message['platform']}\nConfidence Score: {message['confidence_score']}"
-        email_text = f"Subject: {subject}\n\n{body}"
+        email_msg = MIMEText(body)
+        email_msg["Subject"] = subject
+        email_msg["From"] = sender_email
+        email_msg["To"] = to_email
 
         try:
-            server.sendmail(sender_email, to_email, email_text)
-            print(f"✅ Email successfully sent to {to_email} for message: {message['message']}")
-        except smtplib.SMTPException as e:
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()  # Secure the connection
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, to_email, email_msg.as_string())
+            print(f"✅ Email successfully sent to {to_email}")
+        except smtplib.SMTPAuthenticationError:
+            print("❌ SMTP Authentication Error: Check your email credentials and security settings.")
+        except Exception as e:
             print(f"❌ Failed to send email to {to_email}: {e}")
 
-    server.quit()
+    def notify_users(self, flagged_messages):
+        """Notify all registered users if flagged messages are detected."""
+        if not flagged_messages:
+            print("✅ No harmful messages detected. No alerts needed.")
+            return
 
-# Example flagged messages for testing
-flagged_messages = [
-    {"username": "unknown", "message": "You're so worthless, no one likes you.", "platform": "MockPlatform", "confidence_score": 0.9783},
-    {"username": "unknown", "message": "Just go disappear already.", "platform": "MockPlatform", "confidence_score": 0.5973},
-]
+        print(f"🚨 {len(flagged_messages)} flagged messages found. Notifying users...")
 
-# Execute
-users = load_users()
-send_alerts(flagged_messages)
+        subject = "🚨 Digital Watchdog Alert: Flagged Message Detected"
+        body = "The following messages have been flagged:\n\n"
+        for msg in flagged_messages:
+            body += f"- {msg['message']} (Classification: {msg['classification']}, Confidence: {msg['confidence_score']:.2f})\n"
+
+        # Notify each user, only if the user object contains an "email" key.
+        for user in self.users:
+            if "email" in user:
+                self.send_email(user["email"], subject, body)
+            else:
+                print(f"❌ User entry {user} does not have an 'email' key.")
+
+# Testing the Alert System if running alert.py directly
+if __name__ == "__main__":
+    alert_system = AlertSystem()
+    # Example flagged messages for testing:
+    test_flagged_messages = [
+        {"username": "unknown", "message": "You're so worthless, no one likes you.", "platform": "MockPlatform", "classification": "Needs Attention", "confidence_score": 0.9783},
+        {"username": "unknown", "message": "Just go disappear already.", "platform": "MockPlatform", "classification": "Needs Attention", "confidence_score": 0.5973}
+    ]
+    alert_system.notify_users(test_flagged_messages)
