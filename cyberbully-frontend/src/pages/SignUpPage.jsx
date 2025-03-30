@@ -1,7 +1,7 @@
 // src/pages/SignUpPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebaseConfig'
+import { auth } from '../firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signUp } from '../services/auth';
 
@@ -28,7 +28,7 @@ const SignUpPage = () => {
     }
 
     try {
-      await signUp(email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       localStorage.setItem('hasSignedUp', 'true');
       navigate('/home');
     } catch (error) {
